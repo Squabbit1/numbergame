@@ -1,17 +1,42 @@
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { useState } from "react";
 import PrimaryButton from "../components/PrimaryButton";
 
 function StartGameScreen() {
+  const [enteredNumber, setEnteredNumber] = useState("");
+  function numberInputHandler(enteredText) {
+    setEnteredNumber(enteredText);
+  }
+
+  function confirmInputHandler() {
+    const chosenNumber = parseInt(enteredNumber);
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      // show alert
+      Alert.alert(
+        "Invalid Input",
+        "Please enter a valid number between 1 and 99.",
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }],
+      );
+      return;
+    }
+    console.log("Valid number entered: " + chosenNumber);
+  }
+  function resetInputHandler() {
+    setEnteredNumber("");
+  }
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.numberInputContainer}
         keyboardType="number-pad"
         maxLength={2}
+        onChangeText={numberInputHandler}
+        value={enteredNumber}
       />
       <View style={styles.buttonContainer}>
-        <PrimaryButton>Reset</PrimaryButton>
-        <PrimaryButton>Confirm</PrimaryButton>
+        <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+        <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
       </View>
     </View>
   );
@@ -25,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#4e0329",
+    backgroundColor: "#3b021f",
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
@@ -37,7 +62,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "Center",
-    
   },
 
   numberInputContainer: {
@@ -45,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: "#ddb52f",
     fontWeight: "bold",
-    backgroundColor: "#8d2559",
+    backgroundColor: "#3b021f",
     borderBottomColor: "#ddb52f",
     borderBottomWidth: 2,
     marginVertical: 8,
