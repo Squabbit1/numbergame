@@ -6,6 +6,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
+import GameOverScreen from "./screens/GameOverScreen";
 import Colors from "./constants/colors";
 
 /**
@@ -16,6 +17,8 @@ import Colors from "./constants/colors";
 export default function App() {
 // Track the user's chosen number
 const [userNumber, setUserNumber] = useState();
+const [gameIsOver, setGameIsOver] = useState(true);
+const [guessRounds, setGuessRounds] = useState(0);
 
 /**
  * Handler function called when the user confirms their number
@@ -23,15 +26,26 @@ const [userNumber, setUserNumber] = useState();
  */
 function confirmedNumberHandler(confirmedNumber) {
   setUserNumber(confirmedNumber);
+  setGameIsOver(false);
 }
 
+function gameOverHandler(guesses) {
+  setGameIsOver(true);
+  setGuessRounds(guesses);
+}
 // Default screen is the start screen where user enters a number
 let screen = <StartGameScreen onConfirmedNumber={confirmedNumberHandler}/>;
 
 // Once user has confirmed a number, switch to the game screen
 if (userNumber) {
-  screen = <GameScreen userNumber={userNumber} />;
+  screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>;
 }
+
+if (gameIsOver && userNumber) {
+  screen = <GameOverScreen guesses={guessRounds} userNumber={userNumber}/>;
+}
+
+
   // Render the app with gradient background and image overlay
   return (
     <LinearGradient colors={[Colors.purple650, Colors.yellow500]} style={styles.container}>

@@ -1,7 +1,8 @@
-import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { TextInput, View, StyleSheet, Alert, Text } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
+import Title from "../components/ui/Title";
 
 /**
  * StartGameScreen component
@@ -9,7 +10,7 @@ import Colors from "../constants/colors";
  * Validates that the number is between 1 and 99
  * @param {Function} onConfirmedNumber - Callback function to pass the confirmed number to parent
  */
-function StartGameScreen({onConfirmedNumber}) {
+function StartGameScreen({ onConfirmedNumber }) {
   // Track the number entered by the user
   const [enteredNumber, setEnteredNumber] = useState("");
 
@@ -51,17 +52,21 @@ function StartGameScreen({onConfirmedNumber}) {
 
   // Render the input screen with number input and action buttons
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInputContainer}
-        keyboardType="number-pad"
-        maxLength={2}
-        onChangeText={numberInputHandler}
-        value={enteredNumber}
-      />
-      <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-        <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title >Pick a Number</Title>
+      <View style={styles.inputContainer}>
+        <Text style={styles.instruction}> Pick a number between 1 and 99 </Text>
+        <TextInput
+          style={styles.numberInputContainer}
+          keyboardType="number-pad"
+          maxLength={2}
+          onChangeText={numberInputHandler}
+          value={enteredNumber}
+        />
+        <View style={styles.buttonContainer}>
+          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -71,9 +76,14 @@ export default StartGameScreen;
 
 // Styles for the start game screen
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
+  },
   inputContainer: {
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 36,
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: Colors.purple700, // Dark purple background
@@ -100,5 +110,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     marginVertical: 8,
     textAlign: "center",
+  },
+  instruction: {
+    color: Colors.yellow500,
+    fontSize: 20,
+    marginBottom: 8,
   },
 });
