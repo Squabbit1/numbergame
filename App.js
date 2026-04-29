@@ -6,6 +6,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
+import Colors from "./constants/colors";
 
 /**
  * Main App component for the Number Game
@@ -29,11 +30,11 @@ let screen = <StartGameScreen onConfirmedNumber={confirmedNumberHandler}/>;
 
 // Once user has confirmed a number, switch to the game screen
 if (userNumber) {
-  screen = <GameScreen />;
+  screen = <GameScreen userNumber={userNumber} />;
 }
   // Render the app with gradient background and image overlay
   return (
-    <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.container}>
+    <LinearGradient colors={[Colors.purple650, Colors.yellow500]} style={styles.container}>
       <StatusBar style="light"></StatusBar>
       <ImageBackground
         source={require("./assets/images/background.png")}

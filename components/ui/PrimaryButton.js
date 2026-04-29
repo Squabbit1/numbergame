@@ -1,4 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import Colors from "../../constants/colors";
 
 /**
  * PrimaryButton component
@@ -13,7 +14,7 @@ function PrimaryButton({ children, onPress }) {
       <Pressable
         style={styles.buttonInnerContainer}
         onPress={onPress}
-        android_ripple={{ foreground: true, color: "#640233" }}
+        android_ripple={{ foreground: true, color: Colors.primary600 }}
       >
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     overflow: "hidden", // Ensures ripple effect stays within rounded corners
   },
   buttonInnerContainer: {
-    backgroundColor: "#72063c", // Dark pink/purple background
+    backgroundColor: Colors.purple500, // Dark pink/purple background
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 2, // Android shadow
