@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
     number: {
         color: Colors.yellow500,
         fontSize: 36,
-        fontWeight: "bold",
+        fontFamily: "open-sans-bold",
     }
 });

@@ -10,6 +10,8 @@ export default Card;
 
 const styles = StyleSheet.create({
 card: {
+    width: "90%",
+    alignSelf: "center", 
     alignItems: "center",
     marginTop: 36,
     marginHorizontal: 24,

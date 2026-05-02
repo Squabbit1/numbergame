@@ -30,9 +30,11 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 28,
     margin: 4,
+    padding: 8,
     overflow: "hidden", // Ensures ripple effect stays within rounded corners
   },
   buttonInnerContainer: {
+    
     backgroundColor: Colors.purple500, // Dark pink/purple background
     paddingVertical: 8,
     paddingHorizontal: 16,

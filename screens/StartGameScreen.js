@@ -57,7 +57,7 @@ function StartGameScreen({ onConfirmedNumber }) {
     <View style={styles.rootContainer}>
       <Title >Pick a Number</Title>
       <Card>
-        <InstructionText>Pick a number between 1 and 99</InstructionText>
+        <InstructionText >Pick a number between 1 and 99</InstructionText>
         <TextInput
           style={styles.numberInputContainer}
           keyboardType="number-pad"
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.purple700,
     borderBottomColor: Colors.yellow500, // Gold underline
     borderBottomWidth: 2,
-    marginVertical: 8,
+    marginBottom: 20,
     textAlign: "center",
   },
   
