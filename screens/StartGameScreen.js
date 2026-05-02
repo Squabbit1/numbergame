@@ -3,6 +3,8 @@ import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 /**
  * StartGameScreen component
@@ -54,8 +56,8 @@ function StartGameScreen({ onConfirmedNumber }) {
   return (
     <View style={styles.rootContainer}>
       <Title >Pick a Number</Title>
-      <View style={styles.inputContainer}>
-        <Text style={styles.instruction}> Pick a number between 1 and 99 </Text>
+      <Card>
+        <InstructionText>Pick a number between 1 and 99</InstructionText>
         <TextInput
           style={styles.numberInputContainer}
           keyboardType="number-pad"
@@ -67,7 +69,7 @@ function StartGameScreen({ onConfirmedNumber }) {
           <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
           <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
         </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -80,19 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 100,
     alignItems: "center",
-  },
-  inputContainer: {
-    alignItems: "center",
-    marginTop: 36,
-    marginHorizontal: 24,
-    padding: 16,
-    backgroundColor: Colors.purple700, // Dark purple background
-    borderRadius: 8,
-    elevation: 4, // Android shadow
-    shadowColor: "black", // iOS shadow properties
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
   },
 
   buttonContainer: {
@@ -111,9 +100,5 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     textAlign: "center",
   },
-  instruction: {
-    color: Colors.yellow500,
-    fontSize: 20,
-    marginBottom: 8,
-  },
+  
 });
