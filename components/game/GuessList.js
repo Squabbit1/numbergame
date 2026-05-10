@@ -1,4 +1,3 @@
-
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 /**
@@ -54,3 +53,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+

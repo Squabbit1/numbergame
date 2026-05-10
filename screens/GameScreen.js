@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert} from "react-native";
+import { View, StyleSheet, Alert, Text} from "react-native";
 import { useState, useEffect } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
@@ -146,6 +146,7 @@ function GameScreen({ userNumber, onGameOver }) {
       </Card>
 +      {/* guesses list handled by GuessList component */}
 +      <GuessList guesses={guesses} />
+
     </View>
   );
 }

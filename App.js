@@ -1,7 +1,7 @@
 // Main application entry — manages screen flow and global assets (fonts, background)
 import { useState } from "react"; // React hook to manage component state
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground, View, ActivityIndicator } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -13,7 +13,7 @@ import GameOverScreen from "./screens/GameOverScreen";
 // App constants and font loading
 import Colors from "./constants/colors";
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+// Removed: import AppLoading from "expo-app-loading";
 
 /**
  * Main App component for the Number Game
@@ -38,13 +38,18 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
-  // While fonts are loading, render the AppLoading component to block UI.
-  // (AppLoading shows a splash until the fonts are ready.)
+  // While fonts are loading, render a visible loading screen instead of AppLoading.
   if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  return (
+    <LinearGradient colors={[Colors.purple650, Colors.yellow500]} style={styles.container}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#FFFFFF" />
+        </View>
+    </LinearGradient>
+  );
+}
 
-  /**
+  /** 
    * Handler: user has confirmed their chosen number on the Start screen.
    * - store the chosen number and switch to the GameScreen
    */
@@ -119,8 +124,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, // fill the whole screen
   },
-  /** 
-   * Note: commented-out alternative container was left for reference.
-   * Keep the simple full-screen container above for consistent layout.
-   */
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
