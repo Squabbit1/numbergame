@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert, Text} from "react-native";
+import { View, StyleSheet, Alert, Text } from "react-native";
 import { useState, useEffect } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
@@ -104,7 +104,7 @@ function GameScreen({ userNumber, onGameOver }) {
     const newRndNumber = generateRandomBetween(
       minBoundary,
       maxBoundary,
-      currentGuess
+      currentGuess,
     );
 
     // Update state: display new guess and push it to the guesses list (newest-first)
@@ -144,9 +144,8 @@ function GameScreen({ userNumber, onGameOver }) {
           </PrimaryButton>
         </View>
       </Card>
-+      {/* guesses list handled by GuessList component */}
-+      <GuessList guesses={guesses} />
-
+      {/* guesses list handled by GuessList component */}
+      <GuessList guesses={guesses} />
     </View>
   );
 }
